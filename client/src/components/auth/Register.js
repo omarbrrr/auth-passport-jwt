@@ -65,7 +65,7 @@ function Register(props) {
   }, [props.errors]);
 
   return (
-    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border-1 border-gray-200">
+    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border border-indigo-200">
       {!props.auth.isAuthenticated ? (
         <>
           <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
@@ -81,7 +81,7 @@ function Register(props) {
                 id="name"
                 type="text"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
                   {
                     invalid: errors.name,
                   }
@@ -98,7 +98,7 @@ function Register(props) {
                 id="email"
                 type="email"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
                   {
                     invalid: errors.email,
                   }
@@ -115,7 +115,7 @@ function Register(props) {
                 id="password"
                 type="password"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
                   {
                     invalid: errors.password,
                   }
@@ -132,7 +132,7 @@ function Register(props) {
                 id="password2"
                 type="password"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
                   {
                     invalid: errors.password2,
                   }

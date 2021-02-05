@@ -58,7 +58,7 @@ function Login(props) {
   }, [props]);
 
   return (
-    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border-1 border-gray-200">
+    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border border-indigo-200">
       {!props.auth.isAuthenticated ? (
         <>
           <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
@@ -74,7 +74,7 @@ function Login(props) {
                 id="email"
                 type="email"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
                   {
                     invalid: errors.email || errors.emailnotfound,
                   }
@@ -93,7 +93,7 @@ function Login(props) {
                 id="password"
                 type="password"
                 className={classnames(
-                  "w-full py-1 px-2 border rounded-md border-gray-200",
+                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
                   {
                     invalid: errors.password || errors.passwordincorrect,
                   }
