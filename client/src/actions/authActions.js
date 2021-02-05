@@ -23,7 +23,7 @@ export const registerUser = (userData, history) => (dispatch) => {
 // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
   axios
-    .post("https://auth-passport-jwt.herokuapp.com//api/users/login", userData)
+    .post("https://auth-passport-jwt.herokuapp.com/api/users/login", userData)
     .then((res) => {
       // Save to localStorage
       // Set token to localStorage
