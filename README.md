@@ -10,7 +10,7 @@ Frontend:
 
 - React
 - Redux
-- Materialize CSS
+- Tailwind CSS
 - Axios
 
 Backend:
