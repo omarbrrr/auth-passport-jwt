@@ -4,13 +4,19 @@ import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
+const DEV = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
+
+const REGISTER_URL = `${
+  !DEV ? "https://auth-passport-jwt.herokuapp.com" : ""
+}/api/users/register`;
+const LOGIN_URL = `${
+  !DEV ? "https://auth-passport-jwt.herokuapp.com" : ""
+}/api/users/login`;
+
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
   axios
-    .post(
-      "https://auth-passport-jwt.herokuapp.com/api/users/register",
-      userData
-    )
+    .post(REGISTER_URL, userData)
     .then((res) => history.push("/login")) // re-direct to login on successful register
     .catch((err) =>
       dispatch({
@@ -23,7 +29,7 @@ export const registerUser = (userData, history) => (dispatch) => {
 // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
   axios
-    .post("https://auth-passport-jwt.herokuapp.com/api/users/login", userData)
+    .post(LOGIN_URL, userData)
     .then((res) => {
       // Save to localStorage
       // Set token to localStorage
