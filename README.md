@@ -20,10 +20,6 @@ Backend:
 - MongoDB & Mongoose
 - Passport.js
 
-Host:
-
-- [Vercel]()
-
 ## Setting up
 
 To set this project up, you can clone the repository and open two terminals. Install the dependencies for each package.json and then run the development script for each one simultaneously. Open [http://localhost:3000](http://localhost:3000) to view the application.
