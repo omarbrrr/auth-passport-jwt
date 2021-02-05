@@ -58,7 +58,7 @@ function Login(props) {
   }, [props]);
 
   return (
-    <div className="w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border-1 border-gray-200">
+    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border-1 border-gray-200">
       {!props.auth.isAuthenticated ? (
         <>
           <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
