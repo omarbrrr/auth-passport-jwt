@@ -34,6 +34,14 @@ mongoose
   .catch((err) => console.log(err));
 /* MONGOOSE SETUP END */
 
+/* PASSPORT SETUP */
+const passport = require("passport");
+
+app.use(passport.initialize());
+
+require("./config/passport")(passport);
+/* PASSPORT SETUP END */
+
 /* ROUTES */
 app.use("/api/users", users);
 
