@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+const users = require("./routes/api/users");
+
 /* EXPRESS SETUP */
 const express = require("express");
 const app = express();
@@ -31,5 +33,8 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
 /* MONGOOSE SETUP END */
+
+/* ROUTES */
+app.use("/api/users", users);
 
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT} !`));
