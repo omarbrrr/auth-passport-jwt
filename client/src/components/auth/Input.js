@@ -1,0 +1,23 @@
+import React from "react";
+
+import classnames from "classnames";
+
+export default function Input({ id, type, label, value, setValue, err }) {
+  return (
+    <div className="mb-1">
+      <label htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        error={err}
+        className={classnames("w-full py-1 px-2 border rounded-md bg-gray-50", {
+          invalid: err,
+        })}
+        required
+      />
+      <span className="text-xs text-red-600">{err}</span>
+    </div>
+  );
+}
