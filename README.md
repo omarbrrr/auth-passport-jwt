@@ -6,8 +6,8 @@ The frontend was developed with React, with a proxy to an Express.js server.
 
 ## Live URL
 
-The web app is live at https://auth-passport-jwt.netlify.app/login
-The backend server is hosted in Heroku
+- The frontend is hosted in Netlify: https://auth-passport-jwt.netlify.app/
+- The backend server is hosted in Heroku
 
 ## Technologies
 
