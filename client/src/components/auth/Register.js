@@ -4,9 +4,10 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import classnames from "classnames";
-
 import { registerUser } from "../../actions/authActions";
+
+import AuthContainer from "./AuthContainer";
+import Form from "./Form";
 
 function Register(props) {
   const [name, setName] = useState("");
@@ -14,31 +15,42 @@ function Register(props) {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const [errors, setErrors] = useState({});
+  const REGISTER_FIELDS = [
+    {
+      id: "name",
+      type: "name",
+      label: "Name",
+      value: name,
+      setValue: setName,
+      errors: props.errors?.name_register,
+    },
+    {
+      id: "email",
+      type: "email",
+      label: "Email",
+      value: email,
+      setValue: setEmail,
+      errors: props.errors?.email_register,
+    },
+    {
+      id: "password",
+      type: "password",
+      label: "Password",
+      value: password,
+      setValue: setPassword,
+      errors: props.errors?.password_register,
+    },
+    {
+      id: "password2",
+      type: "password",
+      label: "Confirm Password",
+      value: password2,
+      setValue: setPassword2,
+      errors: props.errors?.password2_register,
+    },
+  ];
 
-  const onChange = (e) => {
-    const fieldType = e.target.id;
-    const newValue = e.target.value;
-
-    switch (fieldType) {
-      case "name":
-        setName(newValue);
-        break;
-      case "email":
-        setEmail(newValue);
-        break;
-      case "password":
-        setPassword(newValue);
-        break;
-      case "password2":
-        setPassword2(newValue);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const onSubmit = (e) => {
+  const onRegister = (e) => {
     e.preventDefault();
 
     const newUser = {
@@ -56,109 +68,33 @@ function Register(props) {
     if (props.auth.isAuthenticated) {
       props.history.push("/");
     }
-  });
+  }, [props]);
 
-  useEffect(() => {
-    if (props.errors) {
-      setErrors(props.errors);
-    }
-  }, [props.errors]);
+  if (props.auth.isAuthenticated) return null;
 
   return (
-    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border border-indigo-200">
-      {!props.auth.isAuthenticated ? (
-        <>
-          <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
-            Sign up!
-          </h4>
-          <form noValidate onSubmit={onSubmit} className="text-sm">
-            <div className="mb-2">
-              <label htmlFor="name">Name</label>
-              <input
-                onChange={onChange}
-                value={name}
-                error={errors.name}
-                id="name"
-                type="text"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
-                  {
-                    invalid: errors.name,
-                  }
-                )}
-              />
-              <span className="red-text">{errors.name}</span>
-            </div>
-            <div className="mb-2">
-              <label htmlFor="email">Email</label>
-              <input
-                onChange={onChange}
-                value={email}
-                error={errors.email}
-                id="email"
-                type="email"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
-                  {
-                    invalid: errors.email,
-                  }
-                )}
-              />
-              <span className="text-red-600">{errors.email}</span>
-            </div>
-            <div className="mb-2">
-              <label htmlFor="password">Password</label>
-              <input
-                onChange={onChange}
-                value={password}
-                error={errors.password}
-                id="password"
-                type="password"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
-                  {
-                    invalid: errors.password,
-                  }
-                )}
-              />
-              <span className="text-red-600">{errors.password}</span>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password2">Confirm Password</label>
-              <input
-                onChange={onChange}
-                value={password2}
-                error={errors.password2}
-                id="password2"
-                type="password"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md  bg-indigo-50",
-                  {
-                    invalid: errors.password2,
-                  }
-                )}
-              />
-              <span className="red-text">{errors.password2}</span>
-            </div>
-            <button
-              type="submit"
-              className="block mx-auto py-2 px-8 rounded-lg text-gray-100 bg-indigo-600"
-            >
-              Register
-            </button>
-          </form>
-          <p className="mt-4 text-center text-xs">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-indigo-600 hover:text-indigo-800 pointer"
-            >
-              Log in
-            </Link>
-          </p>
-        </>
-      ) : null}
-    </div>
+    <AuthContainer>
+      <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
+        Sign up!
+      </h4>
+
+      <Form
+        type="register"
+        inputs={REGISTER_FIELDS}
+        submitHandler={onRegister}
+        submitLabel="Register"
+      />
+
+      <p className="mt-4 text-center text-xs">
+        Already have an account?{" "}
+        <Link
+          to="/login"
+          className="text-indigo-600 hover:text-indigo-800 pointer"
+        >
+          Log in
+        </Link>
+      </p>
+    </AuthContainer>
   );
 }
 

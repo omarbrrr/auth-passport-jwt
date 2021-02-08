@@ -5,31 +5,34 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import classnames from "classnames";
+
+import AuthContainer from "./AuthContainer";
+import Form from "./Form";
 
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [errors, setErrors] = useState({});
+  const LOGIN_FIELDS = [
+    {
+      id: "email",
+      type: "email",
+      label: "Email",
+      value: email,
+      setValue: setEmail,
+      errors: props.errors?.email_login,
+    },
+    {
+      id: "password",
+      type: "password",
+      label: "Password",
+      value: password,
+      setValue: setPassword,
+      errors: props.errors?.password_login,
+    },
+  ];
 
-  const onChange = (e) => {
-    const fieldType = e.target.id;
-    const newValue = e.target.value;
-
-    switch (fieldType) {
-      case "email":
-        setEmail(newValue);
-        break;
-      case "password":
-        setPassword(newValue);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const onSubmit = (e) => {
+  const onLogin = (e) => {
     e.preventDefault();
 
     const userData = {
@@ -41,88 +44,36 @@ function Login(props) {
   };
 
   useEffect(() => {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
-    if (props.auth.isAuthenticated) {
-      props.history.push("/");
-    }
-  });
-
-  useEffect(() => {
     if (props.auth.isAuthenticated) {
       props.history.push("/"); // push user to dashboard when they login
     }
-
-    if (props.errors) {
-      setErrors(props.errors);
-    }
   }, [props]);
 
+  if (props.auth.isAuthenticated) return null;
+
   return (
-    <div className="max-w-xl w-5/6 mx-auto mt-12 py-4 px-6 bg-white rounded-lg border border-indigo-200">
-      {!props.auth.isAuthenticated ? (
-        <>
-          <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
-            Log In
-          </h4>
-          <form noValidate onSubmit={onSubmit} className="text-sm">
-            <div className="mb-2">
-              <label htmlFor="email">Email</label>
-              <input
-                onChange={onChange}
-                value={email}
-                error={errors.email}
-                id="email"
-                type="email"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
-                  {
-                    invalid: errors.email || errors.emailnotfound,
-                  }
-                )}
-              />
-              <span className="text-red-600">
-                {errors.email} {errors.emailnotfound}
-              </span>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password">Password</label>
-              <input
-                onChange={onChange}
-                value={password}
-                error={errors.password}
-                id="password"
-                type="password"
-                className={classnames(
-                  "w-full py-1 px-2 border rounded-md bg-indigo-50",
-                  {
-                    invalid: errors.password || errors.passwordincorrect,
-                  }
-                )}
-              />
-              <span className="text-red-600">
-                {errors.password}
-                {errors.passwordincorrect}
-              </span>
-            </div>
-            <button
-              type="submit"
-              className="block mx-auto py-2 px-8 rounded-lg text-gray-100 bg-indigo-600"
-            >
-              Enter
-            </button>
-          </form>
-          <p className="mt-4 text-center text-xs">
-            Already have an account?{" "}
-            <Link
-              to="/register"
-              className="text-indigo-600 hover:text-indigo-800 pointer"
-            >
-              Register
-            </Link>
-          </p>
-        </>
-      ) : null}
-    </div>
+    <AuthContainer>
+      <h4 className="mb-2 text-center text-md font-bold tracking-wider uppercase sm:text-lg">
+        Log In
+      </h4>
+
+      <Form
+        type="login"
+        inputs={LOGIN_FIELDS}
+        submitHandler={onLogin}
+        submitLabel="Enter"
+      />
+
+      <p className="mt-4 text-center text-xs">
+        Already have an account?{" "}
+        <Link
+          to="/register"
+          className="text-indigo-600 hover:text-indigo-800 pointer"
+        >
+          Register
+        </Link>
+      </p>
+    </AuthContainer>
   );
 }
 
