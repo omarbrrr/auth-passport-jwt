@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
+import Button from "../Button";
+
 function Dashboard(props) {
   const { user } = props.auth;
 
@@ -16,12 +18,10 @@ function Dashboard(props) {
     <div className="w-full mt-20 text-center">
       <p className="mb-4 text-xl">Hello, {user.name.split(" ")[0]}</p>
       <p className="mb-12 text-lg">You are currently logged in 👏</p>
-      <button
-        onClick={onLogoutClick}
-        className="block mx-auto py-2 px-8 rounded-lg text-gray-100 bg-indigo-600 hover:bg-indigo-800"
-      >
+
+      <Button type="button" onClick={onLogoutClick}>
         Logout
-      </button>
+      </Button>
     </div>
   );
 }
