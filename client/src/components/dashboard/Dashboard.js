@@ -19,7 +19,7 @@ function Dashboard(props) {
       <p className="mb-4 text-xl">Hello, {user.name.split(" ")[0]}</p>
       <p className="mb-12 text-lg">You are currently logged in 👏</p>
 
-      <Button type="button" onClick={onLogoutClick}>
+      <Button type="button" clickHandler={onLogoutClick}>
         Logout
       </Button>
     </div>
