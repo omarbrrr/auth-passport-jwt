@@ -17,7 +17,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     if (props.location !== "/") {
-      props.history.push("/");
+      props.history.replace("/");
     }
   }, []);
 
