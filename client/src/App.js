@@ -41,7 +41,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="relative w-screen h-screen font-body bg-gray-50">
+        <div className="relative w-screen h-screen font-body bg-gray-100">
           <Navbar />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
