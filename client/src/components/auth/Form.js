@@ -26,10 +26,10 @@ export default function Form({
   };
 
   return (
-    <form className="text-sm" onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
       {inputs.map((input) => renderInput(input))}
 
-      <Button type="submit" classNames="mt-4" disabled={isLoading}>
+      <Button type="submit" classNames="mt-4 text-sm" disabled={isLoading}>
         {isLoading ? <Loader /> : submitLabel}
       </Button>
     </form>

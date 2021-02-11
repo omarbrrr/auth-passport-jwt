@@ -21,8 +21,10 @@ export default function Input({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         error={err}
-        className={classnames("w-full py-1 px-2 border rounded-md bg-gray-50", {
-          invalid: err,
+        className={classnames(
+          "w-full mt-1 py-2 px-3 border rounded-md bg-gray-50",
+          {
+            invalid: err,
           }
         )}
         disabled={disabled}
