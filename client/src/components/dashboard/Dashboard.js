@@ -15,12 +15,6 @@ function Dashboard(props) {
     props.logoutUser();
   };
 
-  useEffect(() => {
-    if (props.location !== "/") {
-      props.history.replace("/");
-    }
-  }, []);
-
   return (
     <div className="w-full mt-20 text-center">
       <p className="mb-4 text-xl">Hello, {user.name.split(" ")[0]}</p>
