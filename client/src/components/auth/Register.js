@@ -16,6 +16,8 @@ function Register(props) {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const REGISTER_FIELDS = [
     {
       id: "name",
@@ -53,6 +55,7 @@ function Register(props) {
 
   const onRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const newUser = {
       name: name,
@@ -62,6 +65,7 @@ function Register(props) {
     };
 
     props.registerUser(newUser, props.history);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -84,6 +88,7 @@ function Register(props) {
         inputs={REGISTER_FIELDS}
         submitHandler={onRegister}
         submitLabel="Register"
+        isLoading={loading}
       />
 
       <ToggleFormButton

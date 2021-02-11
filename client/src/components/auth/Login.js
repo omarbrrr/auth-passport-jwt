@@ -14,6 +14,8 @@ function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const LOGIN_FIELDS = [
     {
       id: "email",
@@ -35,6 +37,7 @@ function Login(props) {
 
   const onLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const userData = {
       email: email,
@@ -42,6 +45,7 @@ function Login(props) {
     };
 
     props.loginUser(userData);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -63,6 +67,7 @@ function Login(props) {
         inputs={LOGIN_FIELDS}
         submitHandler={onLogin}
         submitLabel="Enter"
+        isLoading={loading}
       />
 
       <ToggleFormButton
