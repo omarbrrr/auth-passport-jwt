@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -13,6 +14,12 @@ function Dashboard(props) {
     e.preventDefault();
     props.logoutUser();
   };
+
+  useEffect(() => {
+    if (props.location !== "/") {
+      props.history.push("/");
+    }
+  }, []);
 
   return (
     <div className="w-full mt-20 text-center">
@@ -35,4 +42,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logoutUser })(Dashboard);
+export default connect(mapStateToProps, { logoutUser })(withRouter(Dashboard));

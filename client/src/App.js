@@ -46,7 +46,7 @@ export default function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Switch>
-            <PrivateRoute exact path="/" component={Dashboard} />
+            <PrivateRoute path="/" component={Dashboard} />
           </Switch>
         </div>
       </Router>
