@@ -1,11 +1,13 @@
+// React
 import React, { useEffect, useState } from "react";
-
-import { Link } from "react-router-dom";
-
+// Router
+import { withRouter } from "react-router-dom";
+// Redux
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
+// Components
 import AuthContainer from "./AuthContainer";
 import Form from "./Form";
 import ToggleFormButton from "./ToggleFormButton";
@@ -90,4 +92,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(withRouter(Login));

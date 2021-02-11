@@ -1,11 +1,13 @@
+// React
 import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
-
+// Router
+import { withRouter } from "react-router-dom";
+// Redux
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
 import { registerUser } from "../../actions/authActions";
 
+// Components
 import AuthContainer from "./AuthContainer";
 import Form from "./Form";
 import ToggleFormButton from "./ToggleFormButton";
