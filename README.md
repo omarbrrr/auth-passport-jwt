@@ -1,13 +1,8 @@
 # Auth App
 
-This is a fullstack authentication app using Passport.js and the JWT Strategy.
+This is a fullstack authentication app.
 
-The frontend was developed with React, with a proxy to an Express.js server.
-
-## Live URL
-
-- The frontend is hosted in Netlify: https://auth-passport-jwt.netlify.app/
-- The backend server is hosted in Heroku
+The frontend is built with React and the backend is running on Node.js.
 
 ## Technologies
 
@@ -22,11 +17,36 @@ Backend:
 
 - Node.js
 - Express.js
-- MongoDB & Mongoose
-- Passport.js
+- MongoDB
+- Mongoose
+- Passport.js (JWT Strategy)
+
+## Features
+
+- Submit validation in both the client and server
+- Keeps the user logged using localStorage
+- Prevents non-logged users to access the app without logging
+- Prevents logged users to access the auth forms or any 404 endpoint (redirects to "/")
+
+## Live URL
+
+- The frontend app is hosted in Netlify
+- The backend server is hosted in Heroku
+
+The app is currently [live here](https://auth-passport-jwt.netlify.app/)
 
 ## Setting up
 
-To set this project running locally, you can clone the repository. Open a terminal in both folders and install the dependencies for each package.json. After the installation, run the development script for each one simultaneously. Open [http://localhost:3000](http://localhost:3000) to view the application.
+To set this project running locally, first clone this repository.
 
-Don't forget to have a MongoDB server running, otherwise you'll get errors from the server.
+Now create a `.env` file in the `/server` directory with the following keys:
+- MONGO_URI: The MongoDB connection string URL, including the name of the database you want to use (ex: "mongodb://localhost/auth_app")
+- SECRET_OR_KEY: Another random and top secret value, used with Passport (ex: "secret_key")
+
+Open a terminal in `/server`, install its node dependencies with `npm i` and run the development server with `npm run dev`.
+
+Leave the server running and open a new terminal in `/client`. Install its node dependencies with `npm i` and run the development server with `npm start`.
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+Remember to have a MongoDB server running, otherwise the server app will throw an error.
