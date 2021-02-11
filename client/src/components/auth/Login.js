@@ -8,6 +8,7 @@ import { loginUser } from "../../actions/authActions";
 
 import AuthContainer from "./AuthContainer";
 import Form from "./Form";
+import ToggleFormButton from "./ToggleFormButton";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -64,15 +65,11 @@ function Login(props) {
         submitLabel="Enter"
       />
 
-      <p className="mt-4 text-center text-xs">
-        Already have an account?{" "}
-        <Link
-          to="/register"
-          className="text-indigo-600 hover:text-indigo-800 pointer"
-        >
-          Register
-        </Link>
-      </p>
+      <ToggleFormButton
+        route="/register"
+        text="Don't have an account?"
+        buttonLabel="Sign up!"
+      />
     </AuthContainer>
   );
 }

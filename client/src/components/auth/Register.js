@@ -8,6 +8,7 @@ import { registerUser } from "../../actions/authActions";
 
 import AuthContainer from "./AuthContainer";
 import Form from "./Form";
+import ToggleFormButton from "./ToggleFormButton";
 
 function Register(props) {
   const [name, setName] = useState("");
@@ -85,15 +86,11 @@ function Register(props) {
         submitLabel="Register"
       />
 
-      <p className="mt-4 text-center text-xs">
-        Already have an account?{" "}
-        <Link
-          to="/login"
-          className="text-indigo-600 hover:text-indigo-800 pointer"
-        >
-          Log in
-        </Link>
-      </p>
+      <ToggleFormButton
+        route="/login"
+        text="Already have an account?"
+        buttonLabel="Sign in!"
+      />
     </AuthContainer>
   );
 }
