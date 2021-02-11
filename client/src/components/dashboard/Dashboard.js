@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -14,12 +14,6 @@ function Dashboard(props) {
     e.preventDefault();
     props.logoutUser();
   };
-
-  useEffect(() => {
-    if (props.location !== "/") {
-      props.history.replace("/");
-    }
-  }, []);
 
   return (
     <div className="w-full mt-20 text-center">
