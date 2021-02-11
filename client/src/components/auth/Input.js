@@ -12,11 +12,12 @@ export default function Input({
   disabled,
 }) {
   return (
-    <div className="mb-1">
+    <div className="mb-2 text-xs">
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
         type={type}
+        placeholder={label}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         error={err}
