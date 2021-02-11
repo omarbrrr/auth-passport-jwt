@@ -23,10 +23,9 @@ Backend:
 
 ## Features
 
-- Submit validation in both the client and server
+- Prevents non-logged users to access the app without logging in
+- Submit validation in both the client and the server
 - Keeps the user logged using localStorage
-- Prevents non-logged users to access the app without logging
-- Prevents logged users to access the auth forms or any 404 endpoint (redirects to "/")
 
 ## Live URL
 
