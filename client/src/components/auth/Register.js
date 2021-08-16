@@ -12,7 +12,7 @@ import AuthContainer from "./AuthContainer";
 import Form from "./Form";
 import ToggleFormButton from "./ToggleFormButton";
 
-function Register(props) {
+const Register = ({ errors, isAuthenticated, registerUser, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ function Register(props) {
       label: "Name",
       value: name,
       setValue: setName,
-      errors: props.errors?.name_register,
+      errors: errors?.name_register,
     },
     {
       id: "email",
@@ -35,7 +35,7 @@ function Register(props) {
       label: "Email",
       value: email,
       setValue: setEmail,
-      errors: props.errors?.email_register,
+      errors: errors?.email_register,
     },
     {
       id: "password",
@@ -43,7 +43,7 @@ function Register(props) {
       label: "Password",
       value: password,
       setValue: setPassword,
-      errors: props.errors?.password_register,
+      errors: errors?.password_register,
     },
     {
       id: "password2",
@@ -51,7 +51,7 @@ function Register(props) {
       label: "Confirm Password",
       value: password2,
       setValue: setPassword2,
-      errors: props.errors?.password2_register,
+      errors: errors?.password2_register,
     },
   ];
 
@@ -66,18 +66,21 @@ function Register(props) {
       password2: password2,
     };
 
-    props.registerUser(newUser, props.history);
+    registerUser(newUser, history);
     setLoading(false);
   };
 
+
   useEffect(() => {
     // If logged in and user navigates to Register page, should redirect them to dashboard
-    if (props.auth.isAuthenticated) {
-      props.history.push("/");
+    if (isAuthenticated) {
+      history.push('/');
     }
-  }, [props]);
+  }, [isAuthenticated, history]);
 
-  if (props.auth.isAuthenticated) return null;
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <AuthContainer>
@@ -104,12 +107,12 @@ function Register(props) {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
   errors: state.errors,
 });
 

@@ -12,7 +12,7 @@ import AuthContainer from "./AuthContainer";
 import Form from "./Form";
 import ToggleFormButton from "./ToggleFormButton";
 
-function Login(props) {
+const Login = ({ errors, isAuthenticated, loginUser, history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,7 +25,7 @@ function Login(props) {
       label: "Email",
       value: email,
       setValue: setEmail,
-      errors: props.errors?.email_login,
+      errors: errors?.email_login,
     },
     {
       id: "password",
@@ -33,7 +33,7 @@ function Login(props) {
       label: "Password",
       value: password,
       setValue: setPassword,
-      errors: props.errors?.password_login,
+      errors: errors?.password_login,
     },
   ];
 
@@ -46,17 +46,19 @@ function Login(props) {
       password: password,
     };
 
-    props.loginUser(userData);
+    loginUser(userData);
     setLoading(false);
   };
 
   useEffect(() => {
-    if (props.auth.isAuthenticated) {
-      props.history.push("/"); // push user to dashboard when they login
+    if (isAuthenticated) {
+      history.push('/'); // push user to dashboard when they login
     }
-  }, [props]);
+  }, [isAuthenticated, history]);
 
-  if (props.auth.isAuthenticated) return null;
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <AuthContainer>
@@ -83,12 +85,12 @@ function Login(props) {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
   errors: state.errors,
 });
 

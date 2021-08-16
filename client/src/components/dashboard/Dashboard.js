@@ -7,12 +7,10 @@ import { logoutUser } from "../../actions/authActions";
 
 import Button from "../Button";
 
-function Dashboard(props) {
-  const { user } = props.auth;
-
+const Dashboard = ({ user, logoutUser }) => {
   const onLogoutClick = (e) => {
     e.preventDefault();
-    props.logoutUser();
+    logoutUser();
   };
 
   return (
@@ -29,11 +27,11 @@ function Dashboard(props) {
 
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { logoutUser })(withRouter(Dashboard));
