@@ -34,6 +34,11 @@ Backend:
 
 The app is currently [live here](https://auth-passport-jwt.netlify.app/)
 
+### Test Account
+
+Email: test@test.com
+Password: test1234
+
 ## Setting up
 
 To set this project running locally, first clone this repository.
