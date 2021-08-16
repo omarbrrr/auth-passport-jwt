@@ -73,13 +73,17 @@ const Register = ({
     };
 
     registerUser(newUser, history);
-    setLoading(false);
   };
 
   useEffect(() => {
     document.title = title;
   }, [title]);
 
+  useEffect(() => {
+    if (errors) {
+      setLoading(false);
+    }
+  }, [errors]);
 
   useEffect(() => {
     // If logged in and user navigates to Register page, should redirect them to dashboard

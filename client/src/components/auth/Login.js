@@ -47,12 +47,17 @@ const Login = ({ errors, isAuthenticated, loginUser, history, title }) => {
     };
 
     loginUser(userData);
-    setLoading(false);
   };
 
   useEffect(() => {
     document.title = title;
   }, [title]);
+
+  useEffect(() => {
+    if (errors) {
+      setLoading(false);
+    }
+  }, [errors]);
 
   useEffect(() => {
     if (isAuthenticated) {
