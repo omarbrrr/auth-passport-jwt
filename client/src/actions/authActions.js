@@ -4,14 +4,8 @@ import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
-const DEV = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
-
-const REGISTER_URL = `${
-  !DEV ? "https://auth-passport-jwt.herokuapp.com" : ""
-}/api/users/register`;
-const LOGIN_URL = `${
-  !DEV ? "https://auth-passport-jwt.herokuapp.com" : ""
-}/api/users/login`;
+const REGISTER_URL = `${process.env.REACT_APP_BACKEND_URL}/api/users/register`;
+const LOGIN_URL = `${process.env.REACT_APP_BACKEND_URL}/api/users/login`;
 
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
