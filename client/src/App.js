@@ -56,10 +56,7 @@ export default function App() {
             render={(props) => <Login {...props} title="Login | Auth App" />}
           />
           <Switch>
-            <PrivateRoute
-              path="/"
-              render={(props) => <Dashboard {...props} title="Auth App" />}
-            />
+            <PrivateRoute path="/" component={Dashboard} title="Auth App" />
           </Switch>
         </div>
       </Router>
