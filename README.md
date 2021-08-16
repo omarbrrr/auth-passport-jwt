@@ -38,14 +38,12 @@ The app is currently [live here](https://auth-passport-jwt.netlify.app/)
 
 To set this project running locally, first clone this repository.
 
-Now create a `.env` file in the `/server` directory with the following keys:
-- MONGO_URI: The MongoDB connection string URL, including the name of the database you want to use (ex: "mongodb://localhost/auth_app")
-- SECRET_OR_KEY: Another random and top secret value, used with Passport (ex: "secret_key")
+Now rename `.env.example` file to `.env` in both the `/client` and `/server` directories.
 
-Open a terminal in `/server`, install its node dependencies with `npm i` and run the development server with `npm run dev`.
+Open a terminal for `/client` and another for `/server`. Install the node dependencies with `npm i` in both terminals.
 
-Leave the server running and open a new terminal in `/client`. Install its node dependencies with `npm i` and run the development server with `npm start`.
+Run the client app with `npm start` and the server app with `npm run dev`.
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+Open [http://localhost:5000](http://localhost:5000) in your browser to view the application.
 
 Remember to have a MongoDB server running, otherwise the server app will throw an error.
