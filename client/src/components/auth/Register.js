@@ -12,7 +12,13 @@ import AuthContainer from './AuthContainer';
 import Form from './Form';
 import ToggleFormButton from './ToggleFormButton';
 
-const Register = ({ errors, isAuthenticated, registerUser, history }) => {
+const Register = ({
+  errors,
+  isAuthenticated,
+  registerUser,
+  history,
+  title,
+}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -70,6 +76,10 @@ const Register = ({ errors, isAuthenticated, registerUser, history }) => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
 
   useEffect(() => {
     // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -109,6 +119,7 @@ Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
+  title: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

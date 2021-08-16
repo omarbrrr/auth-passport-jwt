@@ -43,10 +43,23 @@ export default function App() {
       <Router>
         <div className="relative w-screen h-screen font-body bg-gray-100">
           <Navbar />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route
+            exact
+            path="/register"
+            render={(props) => (
+              <Register {...props} title="Register | Auth App" />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login {...props} title="Login | Auth App" />}
+          />
           <Switch>
-            <PrivateRoute path="/" component={Dashboard} />
+            <PrivateRoute
+              path="/"
+              render={(props) => <Dashboard {...props} title="Auth App" />}
+            />
           </Switch>
         </div>
       </Router>

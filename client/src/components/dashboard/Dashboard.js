@@ -7,7 +7,11 @@ import { logoutUser } from '../../actions/authActions';
 
 import Button from '../Button';
 
-const Dashboard = ({ user, logoutUser }) => {
+const Dashboard = ({ user, logoutUser, title }) => {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   const onLogoutClick = (e) => {
     e.preventDefault();
     logoutUser();
@@ -28,6 +32,7 @@ const Dashboard = ({ user, logoutUser }) => {
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  title: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

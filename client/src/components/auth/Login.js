@@ -12,7 +12,7 @@ import AuthContainer from './AuthContainer';
 import Form from './Form';
 import ToggleFormButton from './ToggleFormButton';
 
-const Login = ({ errors, isAuthenticated, loginUser, history }) => {
+const Login = ({ errors, isAuthenticated, loginUser, history, title }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -51,6 +51,10 @@ const Login = ({ errors, isAuthenticated, loginUser, history }) => {
   };
 
   useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
     if (isAuthenticated) {
       history.push('/'); // push user to dashboard when they login
     }
@@ -81,12 +85,13 @@ const Login = ({ errors, isAuthenticated, loginUser, history }) => {
       />
     </AuthContainer>
   );
-}
+};
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired,
+  title: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
