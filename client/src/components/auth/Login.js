@@ -1,36 +1,36 @@
 // React
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 // Router
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 // Redux
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 
 // Components
-import AuthContainer from "./AuthContainer";
-import Form from "./Form";
-import ToggleFormButton from "./ToggleFormButton";
+import AuthContainer from './AuthContainer';
+import Form from './Form';
+import ToggleFormButton from './ToggleFormButton';
 
 const Login = ({ errors, isAuthenticated, loginUser, history }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const [loading, setLoading] = useState(false);
 
   const LOGIN_FIELDS = [
     {
-      id: "email",
-      type: "email",
-      label: "Email",
+      id: 'email',
+      type: 'email',
+      label: 'Email',
       value: email,
       setValue: setEmail,
       errors: errors?.email_login,
     },
     {
-      id: "password",
-      type: "password",
-      label: "Password",
+      id: 'password',
+      type: 'password',
+      label: 'Password',
       value: password,
       setValue: setPassword,
       errors: errors?.password_login,

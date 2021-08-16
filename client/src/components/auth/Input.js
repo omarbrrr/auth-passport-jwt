@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 
 export default function Input({
   id,
@@ -22,7 +22,7 @@ export default function Input({
         onChange={(e) => setValue(e.target.value)}
         error={err}
         className={classnames(
-          "w-full mt-1 py-2 px-3 border rounded-md bg-gray-50",
+          'w-full mt-1 py-2 px-3 border rounded-md bg-gray-50',
           {
             invalid: err,
           }

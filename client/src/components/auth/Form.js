@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import Input from "./Input";
-import Button from "../Button";
-import Loader from "../Loader";
+import Input from './Input';
+import Button from '../Button';
+import Loader from '../Loader';
 
 export default function Form({
   inputs,

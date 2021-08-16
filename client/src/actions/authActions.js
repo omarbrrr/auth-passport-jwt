@@ -1,8 +1,8 @@
-import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
+import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
 
 const REGISTER_URL = `${process.env.REACT_APP_BACKEND_URL}/api/users/register`;
 const LOGIN_URL = `${process.env.REACT_APP_BACKEND_URL}/api/users/login`;
@@ -11,7 +11,7 @@ const LOGIN_URL = `${process.env.REACT_APP_BACKEND_URL}/api/users/login`;
 export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post(REGISTER_URL, userData)
-    .then((res) => history.push("/login")) // re-direct to login on successful register
+    .then((res) => history.push('/login')) // redirect to login on successful register
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -28,7 +28,7 @@ export const loginUser = (userData) => (dispatch) => {
       // Save to localStorage
       // Set token to localStorage
       const { token } = res.data;
-      localStorage.setItem("jwtToken", token);
+      localStorage.setItem('jwtToken', token);
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
@@ -62,7 +62,7 @@ export const setUserLoading = () => {
 // Log user out
 export const logoutUser = () => (dispatch) => {
   // Remove token from local storage
-  localStorage.removeItem("jwtToken");
+  localStorage.removeItem('jwtToken');
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false

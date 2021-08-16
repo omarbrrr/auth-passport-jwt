@@ -1,19 +1,19 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Load input validation
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // Load User model
-const User = require("../../models/User");
+const User = require('../../models/User');
 
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -24,7 +24,7 @@ router.post("/register", (req, res) => {
 
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res.status(400).json({ email_register: "Email already exists" });
+      return res.status(400).json({ email_register: 'Email already exists' });
     } else {
       const newUser = new User({
         name: req.body.name,
@@ -35,7 +35,9 @@ router.post("/register", (req, res) => {
       // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
+          if (err) {
+            throw err;
+          }
           newUser.password = hash;
           newUser
             .save()
@@ -50,7 +52,7 @@ router.post("/register", (req, res) => {
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
 
@@ -66,7 +68,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ email_login: "Email not found" });
+      return res.status(404).json({ email_login: 'Email not found' });
     }
 
     // Check password
@@ -89,12 +91,12 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token,
+              token: 'Bearer ' + token,
             });
           }
         );
       } else {
-        return res.status(400).json({ password_login: "Password incorrect" });
+        return res.status(400).json({ password_login: 'Password incorrect' });
       }
     });
   });

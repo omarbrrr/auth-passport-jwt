@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import BeatLoader from "react-spinners/BeatLoader";
-import { css } from "@emotion/core";
+import BeatLoader from 'react-spinners/BeatLoader';
+import { css } from '@emotion/core';
 
 const loaderCSS = css`
   display: flex;
