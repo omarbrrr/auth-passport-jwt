@@ -36,7 +36,7 @@ The app is currently [live here](https://auth-passport-jwt.netlify.app/)
 
 ### Test Account
 
-- Email: test@test.com
+- Email: test@example.com
 - Password: test1234
 
 ## Setting up
